@@ -1,0 +1,19 @@
+on:
+  release:
+    types: [released]
+
+jobs:
+  post_release_to_hacker_news:
+    runs-on: ubuntu-latest
+    name: Post Release to Hacker News
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Post the Release
+        uses: ./
+        env:
+          HN_USERNAME: ${{ secrets.HN_USERNAME }}
+          HN_PASSWORD: ${{ secrets.HN_PASSWORD }}
+          HN_TITLE_FORMAT_SPECIFIER:  Celery v%s Released (Test)!
+          HN_URL_FORMAT_SPECIFIER: https://docs.celeryproject.org/en/v%s/changelog.html
+          HN_TEST_MODE: true

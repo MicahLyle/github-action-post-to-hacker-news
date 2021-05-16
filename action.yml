@@ -1,0 +1,5 @@
+name: "Post Release to Hacker News"
+description: "On a release, post news news about the release and a link to the changelog to Hacker News."
+runs:
+  using: "docker"
+  image: "Dockerfile"
