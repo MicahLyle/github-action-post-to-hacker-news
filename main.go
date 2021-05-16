@@ -10,10 +10,12 @@ import (
 )
 
 func main() {
-	release, githubRefFound := os.LookupEnv("GITHUB_REF")
+	githubRef, githubRefFound := os.LookupEnv("GITHUB_REF")
 	if githubRefFound == false {
 		log.Fatal("GITHUB_REF environment variable not set.")
 	}
+	githubRefSplit := strings.Split(githubRef, "/")
+	release := githubRefSplit[len(githubRefSplit)-1]
 	release = strings.TrimLeft(release, "vV")
 	username, usernameFound := os.LookupEnv("HN_USERNAME")
 	if usernameFound == false {
