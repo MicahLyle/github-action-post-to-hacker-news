@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-go run .
+./post-to-hacker-news
